@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { getArrival } from '@/lib/subway';
 
 import { StationButton } from '@/components/StationButton';
+import { ArrivalCard } from '@/components/ArrivalCard';
 
 export default function Home() {
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function Home() {
       <h1>지하철 앱</h1>
       <div>
         <StationButton />
+        <ArrivalCard />
       </div>
     </main>
   );
