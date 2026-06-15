@@ -22,7 +22,6 @@ export interface Station {
   line: string;
   lat: number;
   lng: number;
-
   // "153", "P164", "A05" 등을 그대로 저장
-  stationCode?: string;
+  stationCode: string;
 }

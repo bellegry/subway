@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { getArrival } from "@/lib/subway";
+import { useEffect } from 'react';
+import { getArrival } from '@/lib/subway';
 
-import { StationButton } from "@/components/StationButton";
+import { StationButton } from '@/components/StationButton';
 
 export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getArrival("구로");
+      const data = await getArrival('서울역');
 
-      console.log("data", data);
+      console.log('data', data);
       console.table(
         data.map((item) => ({
           subwayId: item.subwayId,

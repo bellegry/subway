@@ -7,11 +7,11 @@ import { button } from '@/ui/styles/button';
 export function StationButton() {
   const { fetchArrivals } = useSubwayStore();
 
-  console.log(stationsByLine['1호선']);
+  // console.log(stationsByLine['1호선']);
 
   return (
     <div>
-      {stationsByLine['1호선']?.map((station) => (
+      {stationsByLine['2호선']?.map((station) => (
         <button
           key={station.id}
           className={cn(
