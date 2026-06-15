@@ -8,7 +8,7 @@ import { StationButton } from "@/components/StationButton";
 export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getArrival("신도림");
+      const data = await getArrival("구로");
 
       console.log("data", data);
       console.table(

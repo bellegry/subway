@@ -1,30 +1,49 @@
-import rawData from "./stations.json";
-import type { Station, RawStation } from "@/types/station";
+import rawStations from './stations.json';
+import rawStationInfo from './stationInfo.json';
 
-export const stations: Station[] = (rawData.DATA as RawStation[]).map((station) => ({
-  id: station.bldn_id,
-  name: station.bldn_nm,
-  line: station.route,
-  lat: Number(station.lat),
-  lng: Number(station.lot),
-}));
+import type { RawStation, RawStationInfo, Station } from '@/types/station';
 
-export const stationsByLine = stations.reduce<Record<string, Station[]>>((acc, station) => {
-  if (!acc[station.line]) {
-    acc[station.line] = [];
-  }
+import { normalizeLine } from '@/utils/normalizeLine';
 
-  acc[station.line].push(station);
+// 역 정보 + 역 순서 매핑 생성
+const stationInfoMap = new Map(
+  (rawStationInfo.DATA as RawStationInfo[]).map((item) => [
+    item.station_cd,
+    item,
+  ]),
+);
 
-  return acc;
-}, {});
+// 역 정보 + 역 순서 병합
+// 최종 Station 생성
+// 역 순서 정보가 없는 경우는 99999로 처리해서 뒤로 보내도록 함
+export const stations: Station[] = (rawStations.DATA as RawStation[]).map(
+  (station) => {
+    const info = stationInfoMap.get(station.bldn_id);
 
-export const stationsByName = stations.reduce<Record<string, Station[]>>((acc, station) => {
-  if (!acc[station.name]) {
-    acc[station.name] = [];
-  }
+    return {
+      id: station.bldn_id,
+      name: station.bldn_nm,
 
-  acc[station.name].push(station);
+      line: info ? normalizeLine(info.line_num) : '',
 
-  return acc;
-}, {});
+      lat: Number(station.lat),
+      lng: Number(station.lot),
+
+      stationCode: info?.fr_code,
+    };
+  },
+);
+
+// 노선별 그룹화 + 정렬
+export const stationsByLine = stations.reduce<Record<string, Station[]>>(
+  (acc, station) => {
+    if (!acc[station.line]) {
+      acc[station.line] = [];
+    }
+
+    acc[station.line].push(station);
+
+    return acc;
+  },
+  {},
+);

@@ -1,0 +1,25 @@
+{
+  "eslint.options": {
+    "extensions": [".ts", ".tsx"],
+    "overrideConfig": {
+      "ignorePatterns": [
+        "node_modules/**", // node_modules 폴더 안의 모든 파일 무시
+        "dist/**", // 빌드된 dist 폴더 안의 모든 파일 무시
+        "*.html" // 모든 HTML 파일은 정렬에서 제외
+      ]
+    }
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  "prettier.enable": true,
+  "prettier.endOfLine": "lf",
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "prettier.printWidth": 80,
+  "prettier.tabWidth": 2,
+  "prettier.semi": true
+}
