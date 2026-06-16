@@ -1,9 +1,9 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
-import { getArrival } from "@/lib/subway";
-import { groupArrival } from "@/utils/goupArrival";
+import { getArrival } from '@/lib/subway';
+import { groupArrival } from '@/utils/groupArrival';
 
-import type { RealtimeArrival } from "@/types/subway";
+import type { RealtimeArrival } from '@/types/subway';
 
 type GroupedArrival = ReturnType<typeof groupArrival>;
 
@@ -24,7 +24,7 @@ export const useSubwayStore = create<SubwayStore>((set, get) => ({
   error: null,
 
   fetchArrivals: async (station: string) => {
-    console.log("클릭됨:", station);
+    console.log('클릭됨:', station);
     if (!station) return;
     set({
       station,
@@ -39,7 +39,7 @@ export const useSubwayStore = create<SubwayStore>((set, get) => ({
       });
     } catch {
       set({
-        error: "Failed to fetch arrival data.",
+        error: 'Failed to fetch arrival data.',
       });
     } finally {
       set({

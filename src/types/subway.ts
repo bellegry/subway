@@ -5,4 +5,7 @@ export interface RealtimeArrival {
   barvlDt: string;
   arvlMsg2: string;
   btrainSttus: string;
+  btrainNo: string;
+  ordkey: string;
+  updnLine: string;
 }
