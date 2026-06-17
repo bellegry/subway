@@ -1,38 +1,30 @@
 'use client';
 
-import { useEffect } from 'react';
-import { getArrival } from '@/lib/subway';
-
 import { StationButton } from '@/components/StationButton';
-import { ArrivalCard } from '@/components/ArrivalCard';
+import { LineTab } from '@/components/BottomSheet/LineTab';
+import { ViewModeToggle } from '@/components/BottomSheet/ViewModeToggle';
+import { Top3View } from '@/components/BottomSheet/Top3View';
+import { DestinationView } from '@/components/BottomSheet/DestinationView';
+
+import { useSubwayStore } from '@/stores/subwayStore';
 
 export default function Home() {
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getArrival('서울역');
-
-      console.log('data', data);
-      console.table(
-        data.map((item) => ({
-          subwayId: item.subwayId,
-          trainLineNm: item.trainLineNm,
-          btrainSttus: item.btrainSttus,
-          bstatnNm: item.bstatnNm,
-          arvlMsg2: item.arvlMsg2,
-        })),
-      );
-    };
-
-    fetchData();
-  }, []);
+  const { arrivals, viewMode } = useSubwayStore();
 
   return (
     <main>
       <h1>지하철 앱</h1>
-      <div>
-        <StationButton />
-        <ArrivalCard />
-      </div>
+
+      <StationButton />
+
+      {arrivals.length > 0 && (
+        <div>
+          <LineTab />
+          <ViewModeToggle />
+
+          {viewMode === 'top3' ? <Top3View /> : <DestinationView />}
+        </div>
+      )}
     </main>
   );
 }

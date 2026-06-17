@@ -1,13 +1,12 @@
 import { useSubwayStore } from '@/stores/subwayStore';
 import { stationsByLine } from '@/data/subwayStation';
+import { getArrival } from '@/lib/subway';
 
 import { cn } from '@/utils/cn';
 import { button } from '@/ui/styles/button';
 
 export function StationButton() {
   const { fetchArrivals } = useSubwayStore();
-
-  // console.log(stationsByLine['1호선']);
 
   return (
     <div>

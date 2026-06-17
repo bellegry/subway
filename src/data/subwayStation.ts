@@ -7,9 +7,11 @@ import { normalizeLine } from '@/utils/normalizeLine';
 
 // 역 정보 + 역 순서 매핑 생성
 const stationCodeMap = new Map<string, string>();
+const stationNameMap = new Map<string, string>();
 
 (rawStationInfo.DATA as RawStationInfo[]).forEach((station) => {
   stationCodeMap.set(station.station_cd, station.fr_code);
+  stationNameMap.set(station.station_cd, station.station_nm);
 });
 
 // 역 정보 + 역 순서 병합
@@ -17,8 +19,8 @@ const stationCodeMap = new Map<string, string>();
 export const stations: Station[] = (rawStations.DATA as RawStation[]).map(
   (station) => ({
     id: station.bldn_id,
-    name: station.bldn_nm,
-    line: station.route,
+    name: stationNameMap.get(station.bldn_id) ?? station.bldn_nm,
+    line: normalizeLine(station.route),
     lat: Number(station.lat),
     lng: Number(station.lot),
     stationCode: stationCodeMap.get(station.bldn_id) ?? '',
