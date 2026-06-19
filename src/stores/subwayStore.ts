@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { getArrival } from '@/lib/subway';
 import type { RealtimeArrival } from '@/types/subway';
+import type { Station } from '@/types/station';
 
 interface SubwayStore {
   // 호선 선택 ex) "1001"
@@ -23,7 +24,7 @@ interface SubwayStore {
   setDestination: (dest: string) => void;
   setViewMode: (mode: 'top3' | 'destination') => void;
 
-  fetchArrivals: (station: string) => Promise<void>;
+  fetchArrivals: (station: Station) => Promise<void>;
 }
 
 export const useSubwayStore = create<SubwayStore>((set) => ({
@@ -38,8 +39,8 @@ export const useSubwayStore = create<SubwayStore>((set) => ({
   setDirection: (dir) => set({ selectedDirection: dir }),
   setDestination: (dest) => set({ selectedDestination: dest }),
   setViewMode: (mode) => set({ viewMode: mode }),
-  fetchArrivals: async (station: string) => {
-    const arrivals = await getArrival(station);
+  fetchArrivals: async (station: Station) => {
+    const arrivals = await getArrival(station.name);
 
     // console.log('봉 확인용');
     // console.log(station);

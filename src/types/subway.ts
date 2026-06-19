@@ -1,7 +1,16 @@
 export interface RealtimeArrival {
-  subwayId: string; // 지하철 호선 ID
+  subwayId: string;
+
+  statnId: string; // 현재 역 ID
+  statnNm: string; // 현재 역명
+
+  statnFid: string; // 이전 역 ID
+  statnTid: string; // 다음 역 ID
+
+  bstatnId: string; // 종착역 ID
+  bstatnNm: string; // 종착역명
+
   trainLineNm: string;
-  bstatnNm: string;
   barvlDt: string;
   arvlMsg2: string;
   btrainSttus: string;

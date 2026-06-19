@@ -14,8 +14,7 @@ export const getArrival = async (
     `/${API_KEY}/json/realtimeStationArrival/0/50/${station}`,
   );
 
-  console.log(station);
-  console.log(response.data);
+  console.log(response.data.realtimeArrivalList?.[0]);
 
   return response.data.realtimeArrivalList ?? [];
 };
