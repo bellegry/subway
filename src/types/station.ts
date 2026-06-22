@@ -17,11 +17,18 @@ export interface RawStationInfo {
 }
 
 export interface Station {
-  id: string;
+  /** API 고유 역 ID (예: 1001000133) */
+  statnId: string;
+
+  /** API 노선 ID (예: 1001, 1002, 1007) */
+  subwayId: string;
+
+  /** API 호출 및 비교용 역명 (예: "서울") */
   name: string;
+
+  /** 화면 표시용 역명 (예: "서울역") */
+  displayName: string;
+
+  /** 표시용 호선명 (예: "1호선") */
   line: string;
-  lat: number;
-  lng: number;
-  // "153", "P164", "A05" 등을 그대로 저장
-  stationCode: string;
 }
