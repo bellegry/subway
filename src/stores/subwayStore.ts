@@ -36,11 +36,16 @@ export const useSubwayStore = create<SubwayStore>((set) => ({
   arrivals: [],
 
   setLine: (line) =>
-    set({
-      selectedLine: line,
-      selectedDirection: '',
-      selectedDestination: null,
+    set((state) => {
+      const lineArrivals = state.arrivals.filter((a) => a.subwayId === line);
+
+      return {
+        selectedLine: line,
+        selectedDirection: lineArrivals[0]?.updnLine ?? '',
+        selectedDestination: null,
+      };
     }),
+
   setDirection: (dir) =>
     set({
       selectedDirection: dir,
@@ -92,8 +97,8 @@ export const useSubwayStore = create<SubwayStore>((set) => ({
     set({
       selectedStation: station,
       arrivals,
-      selectedLine: firstLine,
-      selectedDirection: firstDirection,
+      // selectedLine: firstLine,
+      // selectedDirection: firstDirection,
       selectedDestination: null,
     });
   },
