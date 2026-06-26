@@ -13,13 +13,5 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  },
-
-  "prettier.enable": true,
-  "prettier.endOfLine": "lf",
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "all",
-  "prettier.printWidth": 80,
-  "prettier.tabWidth": 2,
-  "prettier.semi": true
+  }
 }
