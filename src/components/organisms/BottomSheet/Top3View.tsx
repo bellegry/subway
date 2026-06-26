@@ -1,6 +1,6 @@
-import { useSubwayStore } from '@/stores/subwayStore';
-import { sortByEta } from '@/utils/sortByEta';
-import { ArrivalCard } from '@/components/ArrivalCard';
+import { useSubwayStore } from "@/stores/subwayStore";
+import { sortByEta } from "@/utils/sortByEta";
+import { ArrivalCard } from "@/components/organisms/ArrivalCard";
 
 export function Top3View() {
   const { arrivals, selectedLine } = useSubwayStore();

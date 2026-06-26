@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { StationButton } from '@/components/StationButton';
-import { LineTab } from '@/components/BottomSheet/LineTab';
-import { ViewModeToggle } from '@/components/BottomSheet/ViewModeToggle';
-import { Top3View } from '@/components/BottomSheet/Top3View';
-import { DestinationView } from '@/components/BottomSheet/DestinationView';
+import { StationButton } from "@/components/organisms/StationButton";
+import { LineTab } from "@/components/organisms/BottomSheet/LineTab";
+import { ViewModeToggle } from "@/components/organisms/BottomSheet/ViewModeToggle";
+import { Top3View } from "@/components/organisms/BottomSheet/Top3View";
+import { DestinationView } from "@/components/organisms/BottomSheet/DestinationView";
 
-import { useSubwayStore } from '@/stores/subwayStore';
+import { useSubwayStore } from "@/stores/subwayStore";
 
 export default function Home() {
   const { arrivals, viewMode } = useSubwayStore();
@@ -22,7 +22,7 @@ export default function Home() {
           <LineTab />
           <ViewModeToggle />
 
-          {viewMode === 'top3' ? <Top3View /> : <DestinationView />}
+          {viewMode === "top3" ? <Top3View /> : <DestinationView />}
         </div>
       )}
     </main>
