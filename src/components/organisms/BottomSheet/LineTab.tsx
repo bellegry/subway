@@ -1,13 +1,13 @@
-import { useSubwayStore } from '@/stores/subwayStore';
-import { getSubwayLine } from '@/utils/getSubwayLine';
-import SUBWAY_LINE from '@/data/subwayLine';
+import { useSubwayStore } from "@/stores/subwayStore";
+import { getSubwayLine } from "@/utils/getSubwayLine";
+import SUBWAY_LINES from "@/data/subwayLines";
 
 export function LineTab() {
   const { arrivals, selectedLine, selectedDirection, setLine } =
     useSubwayStore();
 
   // 탭 자동 생성
-  const lineTabs = Object.keys(SUBWAY_LINE).filter((subwayId) =>
+  const lineTabs = Object.keys(SUBWAY_LINES).filter((subwayId) =>
     arrivals.some((a) => a.subwayId === subwayId),
   );
 
@@ -22,7 +22,7 @@ export function LineTab() {
   );
 
   const destinationTabs = [
-    ...new Set(directionArrivals.map((a) => a.trainLineNm.split(' - ')[0])),
+    ...new Set(directionArrivals.map((a) => a.trainLineNm.split(" - ")[0])),
   ];
 
   return (

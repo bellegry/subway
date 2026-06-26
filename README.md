@@ -71,9 +71,7 @@ pnpm dev
 
 ### 로컬 접속 URL
 
-```text
 [http://localhost:2450](http://localhost:2450)
-```
 
 ### Build (배포)
 

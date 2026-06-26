@@ -1,5 +1,5 @@
 import { useSubwayStore } from "@/stores/subwayStore";
-import { sortByEta } from "@/utils/sortByEta";
+import { sortByEta } from "@/utils/sortArrivalsByEta";
 import { ArrivalCard } from "@/components/organisms/ArrivalCard";
 
 export function DestinationView() {

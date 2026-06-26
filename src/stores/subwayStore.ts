@@ -1,7 +1,7 @@
-import { create } from 'zustand';
-import { getArrival } from '@/lib/subway';
-import type { RealtimeArrival } from '@/types/subway';
-import type { Station } from '@/types/station';
+import { create } from "zustand";
+import { getArrival } from "@/lib/subwayApi";
+import type { RealtimeArrival } from "@/types/subway.types";
+import type { Station } from "@/types/station.types";
 
 interface SubwayStore {
   selectedStation: Station | null;
@@ -13,7 +13,7 @@ interface SubwayStore {
   // 행선지별에서 선택된 행선지
   selectedDestination: string | null;
   // 보기 모드
-  viewMode: 'top3' | 'destination';
+  viewMode: "top3" | "destination";
 
   // 도착 정보
   arrivals: RealtimeArrival[];
@@ -22,17 +22,17 @@ interface SubwayStore {
   setLine: (line: string) => void;
   setDirection: (dir: string) => void;
   setDestination: (dest: string | null) => void;
-  setViewMode: (mode: 'top3' | 'destination') => void;
+  setViewMode: (mode: "top3" | "destination") => void;
 
   fetchArrivals: (station: Station) => Promise<void>;
 }
 
 export const useSubwayStore = create<SubwayStore>((set) => ({
   selectedStation: null,
-  selectedLine: '',
-  selectedDirection: '',
+  selectedLine: "",
+  selectedDirection: "",
   selectedDestination: null,
-  viewMode: 'top3',
+  viewMode: "top3",
   arrivals: [],
 
   setLine: (line) =>
@@ -41,7 +41,7 @@ export const useSubwayStore = create<SubwayStore>((set) => ({
 
       return {
         selectedLine: line,
-        selectedDirection: lineArrivals[0]?.updnLine ?? '',
+        selectedDirection: lineArrivals[0]?.updnLine ?? "",
         selectedDestination: null,
       };
     }),
@@ -68,7 +68,7 @@ export const useSubwayStore = create<SubwayStore>((set) => ({
   fetchArrivals: async (station: Station) => {
     const arrivals = await getArrival(station.name);
 
-    console.log('봉 확인용');
+    console.log("봉 확인용");
     console.table(
       arrivals?.map((item) => ({
         subwayId: item.subwayId,
@@ -82,8 +82,8 @@ export const useSubwayStore = create<SubwayStore>((set) => ({
     if (!arrivals?.length) {
       set({
         arrivals: [],
-        selectedLine: '',
-        selectedDirection: '',
+        selectedLine: "",
+        selectedDirection: "",
         selectedDestination: null,
       });
       return;
@@ -92,7 +92,7 @@ export const useSubwayStore = create<SubwayStore>((set) => ({
     const firstLine = arrivals[0].subwayId;
 
     const firstDirection =
-      arrivals.find((item) => item.subwayId === firstLine)?.updnLine ?? '';
+      arrivals.find((item) => item.subwayId === firstLine)?.updnLine ?? "";
 
     set({
       selectedStation: station,

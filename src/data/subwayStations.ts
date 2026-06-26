@@ -1,6 +1,6 @@
-import stationMeta from './stations.json';
+import stationMeta from "./stations.json";
 
-import type { Station } from '@/types/station';
+import type { Station } from "@/types/station.types";
 
 // 최종 Station 생성
 export const stations: Station[] = stationMeta.map((item) => ({

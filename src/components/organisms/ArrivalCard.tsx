@@ -1,5 +1,5 @@
-import { getDestination } from '@/utils/groupByDestination';
-import type { RealtimeArrival } from '@/types/subway';
+import { getDestination } from "@/utils/groupArrivalsByDestination";
+import type { RealtimeArrival } from "@/types/subway.types";
 
 interface ArrivalCardProps {
   title?: string;

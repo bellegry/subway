@@ -1,18 +1,18 @@
-import SUBWAY_LINE from '@/data/subwayLine';
-import { stationsByLine } from '@/data/subwayStation';
-import { useSubwayStore } from '@/stores/subwayStore';
+import SUBWAY_LINES from "@/data/subwayLines";
+import { stationsByLine } from "@/data/subwayStations";
+import { useSubwayStore } from "@/stores/subwayStore";
 
-import { cn } from '@/utils/cn';
-import { button } from '@/ui/styles/button';
+import { cn } from "@/utils/cn";
+import { button } from "@/ui/styles/button";
 
-export function StationButton() {
+export function StationSelector() {
   const { selectedLine, setLine, setStation, fetchArrivals } = useSubwayStore();
 
   return (
     <div>
       {/* 호선 선택 */}
       <div className="mb-4 flex gap-2 overflow-x-auto">
-        {Object.entries(SUBWAY_LINE)
+        {Object.entries(SUBWAY_LINES)
           // 실제 데이터가 있는 호선만 표시
           .filter(([subwayId]) => stationsByLine[subwayId]?.length > 0)
           .map(([subwayId, lineName]) => (
@@ -20,10 +20,10 @@ export function StationButton() {
               key={subwayId}
               onClick={() => setLine(subwayId)}
               className={cn(
-                'rounded px-3 py-1',
+                "rounded px-3 py-1",
                 selectedLine === subwayId
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300',
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300",
               )}
             >
               {lineName}
@@ -36,7 +36,7 @@ export function StationButton() {
         {(stationsByLine[selectedLine] ?? []).map((station) => (
           <button
             key={station.statnId}
-            className={cn(button({ variant: 'default', size: 'sm' }), 'w-fit')}
+            className={cn(button({ variant: "default", size: "sm" }), "w-fit")}
             onClick={async () => {
               setStation(station);
               await fetchArrivals(station);

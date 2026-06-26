@@ -1,8 +1,8 @@
 import { useSubwayStore } from "@/stores/subwayStore";
-import { sortByEta } from "@/utils/sortByEta";
+import { sortByEta } from "@/utils/sortArrivalsByEta";
 import { ArrivalCard } from "@/components/organisms/ArrivalCard";
 
-export function Top3View() {
+export function LineArrivalView() {
   const { arrivals, selectedLine } = useSubwayStore();
 
   // 현재 선택된 호선만

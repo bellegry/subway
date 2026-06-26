@@ -1,5 +1,5 @@
-import { api } from './axios';
-import type { RealtimeArrival } from '@/types/subway';
+import { api } from "./apiClient";
+import type { RealtimeArrival } from "@/types/subway.types";
 
 interface ArrivalResponse {
   realtimeArrivalList: RealtimeArrival[];

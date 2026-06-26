@@ -1,8 +1,8 @@
-import { RealtimeArrival } from '@/types/subway';
+import { RealtimeArrival } from "@/types/subway.types";
 
 // 행선지별 그룹화 (목적지 기준)
 export function getDestination(trainLineNm: string) {
-  return trainLineNm.split(' - ')[0];
+  return trainLineNm.split(" - ")[0];
 }
 
 export function groupByDestination(list: RealtimeArrival[]) {
